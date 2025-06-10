@@ -56,9 +56,40 @@ for x in range(1,size_x-1):
         output_pixel=255
       i_transformed[x, y] = output_pixel
 
+
+size_x_filtered = i_transformed.shape[0]
+size_y_filtered = i_transformed.shape[1]
+
+print("Size of the filtered image: ", size_x_filtered, size_y_filtered)
+
  # Plot the image. Note the size of the axes -- they are 512 by 512
 plt.gray()
 plt.grid(False)
 plt.imshow(i_transformed)
 #plt.axis('off')
 plt.show()   
+
+#Pooling
+new_x = int(size_x/2)
+new_y = int(size_y/2)
+newImage = np.zeros((new_x, new_y))
+for x in range(0, size_x, 2):
+  for y in range(0, size_y, 2):
+    pixels = []
+    pixels.append(i_transformed[x, y])
+    pixels.append(i_transformed[x+1, y])
+    pixels.append(i_transformed[x, y+1])
+    pixels.append(i_transformed[x+1, y+1])
+    pixels.sort(reverse=True)
+    newImage[int(x/2),int(y/2)] = pixels[0]
+ 
+size_x_pooled =  newImage.shape[0]
+size_y_pooled =  newImage.shape[1]
+
+print("Size of the pooled image: ", size_x_pooled, size_y_pooled)
+# Plot the image. Note the size of the axes -- now 256 pixels instead of 512
+plt.gray()
+plt.grid(False)
+plt.imshow(newImage)
+#plt.axis('off')
+plt.show()
