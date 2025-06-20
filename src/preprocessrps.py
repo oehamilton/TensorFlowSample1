@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow.keras import preprocessing
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import sys
+import pickle
 
 TRAINING_DIR = "C:\\Users\\oeham\\AppData\\Local\\Temp\\rps_data\\rps"
 print("Training directory:", TRAINING_DIR)
@@ -69,3 +70,8 @@ history = model.fit(train_generator, epochs=25, steps_per_epoch=20, validation_d
 
 model.save("rps.h5")
 print("Model saved as rps.h5")
+
+# Save the history
+with open('history_rps.pkl', 'wb') as file:
+    pickle.dump(history.history, file)
+print("Training history saved as history_rps.pkl")
