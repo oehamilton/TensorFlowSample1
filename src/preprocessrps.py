@@ -1,7 +1,6 @@
 import tensorflow as tf
-import keras_preprocessing
-from keras_preprocessing import image
-from keras_preprocessing.image import ImageDataGenerator
+from tensorflow.keras import preprocessing
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import sys
 
 TRAINING_DIR = "C:\\Users\\oeham\\AppData\\Local\\Temp\\rps_data\\rps"
